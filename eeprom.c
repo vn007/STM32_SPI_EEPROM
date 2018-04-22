@@ -89,9 +89,9 @@ int eepromRW_PG(SPI_TypeDef *SPIx, uint8_t cmd, uint32_t addr, uint8_t *buf, uin
 	
 //	Delay(5);		// tW, see datasheet
 	if (cmd == WRITE) {
-__strob();
+__strobe();
 		while (eepromReadStatus(AppSPI) & WIP);			// testing WIP - 'Write In Progress' of EEPROM (empirically -> up to 426 cycles)
-__strob();
+__strobe();
 	}
 	
 	return i;

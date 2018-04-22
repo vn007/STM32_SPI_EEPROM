@@ -56,7 +56,7 @@ int main(void)
 
 	SPI_Cmd(AppSPI, ENABLE);	// SPI switching On
 	
-__strob();
+__strobe();
 
 	int test_addr0 = 0;
 	int test_length = EEPROM_SIZE;

@@ -14,10 +14,10 @@
 void Delay(uint32_t nTime);
 void __tdelay(uint8_t n);
 void SysTick_Handler(void);
-void __strob(void);
+void __strobe(void);
 
-#define __strobPort	GPIOA
-#define __strobPin	GPIO_Pin_0
+#define __strobePort	GPIOA
+#define __strobePin	GPIO_Pin_0
 
 
 /*-------------------------------------------*/

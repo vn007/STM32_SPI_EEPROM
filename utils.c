@@ -2,11 +2,9 @@
 /*  Miscellaneous utilities                  */
 /*-------------------------------------------*/
 
-
 #include "utils.h"
 #include "stm32f10x_gpio.h"
 
-//static __IO uint32_t TimingDelay;
 static uint32_t TimingDelay;
 
 /*********************************************/
@@ -22,10 +20,10 @@ void __tdelay(uint8_t n) {
 }
 /*-------------------------------------------*/
 
-void __strob(void) {
-	GPIO_WriteBit(__strobPort, __strobPin, Bit_SET);
+void __strobe(void) {
+	GPIO_WriteBit(__strobePort, __strobePin, Bit_SET);
 	__tdelay(20);
-	GPIO_WriteBit(__strobPort, __strobPin, Bit_RESET);
+	GPIO_WriteBit(__strobePort, __strobePin, Bit_RESET);
 	__tdelay(20);
 }
 
