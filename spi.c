@@ -51,34 +51,6 @@ void AppSPI_Init(){
 /*---------------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------------*/
-/*-- spiReadWrite - base subroutine to communicate with SPI slave------------------*/
-/*-- SPI_TypeDef* SPIx - SPI device to use ----------------------------------------*/
-/*-- uint8_t *rbuf - buffer to store received data to -----------------------------*/
-/*-- uint8_t *tbuf - buffer to send data from -------------------------------------*/
-/*-- int num - number of bytes to send or receive ---------------------------------*/
-/*---------------------------------------------------------------------------------*/
-/*-- CMD and ADDR to be put in tbuf as array --------------------------------------*/
-/*-- data to write to be put in tbuf ----------------------------------------------*/
-/*-- if tbuf is 0 then 'num' NOPs will be sent to receive 'num' bytes from slave --*/
-/*-- if rbuf is 0 then no input will be placed to buffer --------------------------*/
-/*---------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------*/
-int spiReadWrite(SPI_TypeDef* SPIx, uint8_t *rbuf, const uint8_t *tbuf, int num)
-{
-	int i;
-	for (i = 0; i < num; i++){
-		if (tbuf) SPI_I2S_SendData(SPIx, tbuf[i]);
-		else SPI_I2S_SendData(SPIx, NOP);
-
-		while (SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE) == RESET);
-
-		if (rbuf) rbuf[i] = SPI_I2S_ReceiveData(SPIx);
-		else SPI_I2S_ReceiveData(SPIx);
-	}
-	return i;
-}
-
-/*---------------------------------------------------------------------------------*/
 /*-- spiXByte - обмен байтами по SPI ----------------------------------------------*/
 /*-- SPI_TypeDef* SPIx - SPI device to use ----------------------------------------*/
 /*-- out - отсылаемый байт --------------------------------------------------------*/
